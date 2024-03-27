@@ -13,10 +13,48 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Perusahaan {
-  id          Int      @id @default(autoincrement())
-  name        String   @db.VarChar(255) @unique
-  address     String?  @db.Text
-  @@map("perusahaan")
+model Company {
+  id       String     @id @default(cuid())
+  name     String     @unique @db.VarChar(255)
+  address  String?    @db.Text
+  Employee Employee[]
+  Place    Place[]
+
+  @@map("companies")
+}
+
+model Employee {
+  id        String  @id @default(cuid())
+  name      String  @db.VarChar(255)
+  email     String  @unique @db.VarChar(255)
+  companyId String  @db.VarChar(255)
+  company   Company @relation(fields: [companyId], references: [id])
+
+  @@map("employees")
+}
+
+model Place {
+  id        String  @id @default(cuid())
+  name      String  @db.VarChar(255)
+  address   String? @db.Text
+  latitude  Float?
+  longitude Float?
+  companyId String  @db.VarChar(255)
+  company   Company @relation(fields: [companyId], references: [id])
+  Well      Well[]
+
+  @@map("places")
+}
+
+model Well {
+  id        String   @id @default(cuid())
+  name      String   @db.VarChar(255)
+  address   String?  @db.Text
+  latitude  Float?
+  longitude Float?
+  placeId   String   @db.VarChar(255)
+  place     Place    @relation(fields: [placeId], references: [id])
+
+  @@map("wells")
 }
 
