@@ -1,0 +1,8 @@
+### register company
+POST http://localhost:3000/api/company
+Content-Type: application/json
+
+{
+    "name": "pt satu",
+    "address": "kalimalang bekasi"
+}
