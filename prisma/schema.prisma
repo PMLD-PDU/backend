@@ -14,8 +14,8 @@ datasource db {
 }
 
 model Company {
-  id       String     @id @default(cuid())
-  name     String     @unique @db.VarChar(255)
+  id       String     @id @default(cuid()) @db.VarChar(50)
+  name     String     @unique @db.VarChar(100)
   address  String?    @db.Text
   Employee Employee[]
   Place    Place[]
@@ -24,37 +24,71 @@ model Company {
 }
 
 model Employee {
-  id        String  @id @default(cuid())
-  name      String  @db.VarChar(255)
-  email     String  @unique @db.VarChar(255)
-  companyId String  @db.VarChar(255)
-  company   Company @relation(fields: [companyId], references: [id])
+  id        String  @id @default(cuid()) @db.VarChar(50)
+  name      String  @db.VarChar(100)
+  email     String  @unique @db.VarChar(100)
+  companyId String  @db.VarChar(50)
+  company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@map("employees")
 }
 
 model Place {
-  id        String  @id @default(cuid())
+  id        String  @id @default(cuid()) @db.VarChar(50)
   name      String  @db.VarChar(255)
   address   String? @db.Text
   latitude  Float?
   longitude Float?
-  companyId String  @db.VarChar(255)
-  company   Company @relation(fields: [companyId], references: [id])
+  companyId String  @db.VarChar(50)
+  company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   Well      Well[]
 
   @@map("places")
 }
 
 model Well {
-  id        String   @id @default(cuid())
-  name      String   @db.VarChar(255)
-  address   String?  @db.Text
+  id        String  @id @default(cuid()) @db.VarChar(50)
+  name      String  @db.VarChar(100)
+  address   String? @db.Text
   latitude  Float?
   longitude Float?
-  placeId   String   @db.VarChar(255)
-  place     Place    @relation(fields: [placeId], references: [id])
+  placeId   String  @db.VarChar(50)
+  place     Place   @relation(fields: [placeId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  Record Record[]
 
   @@map("wells")
 }
 
+model Record {
+  id          String   @id @default(cuid()) @db.VarChar(50)
+
+  date        DateTime @map("Date-Time") @default(now())
+  bitdepth    Float?   @map("BitDepth(m)")
+  scfm        Float?   @map("Scfm")
+  mudcondin   Float?   @map("MudCondIn(mmho)")
+  mudcondout  Float?   @map("MudCondOut(mmho)")
+  blockpos    Float?   @map("BlockPos(m)")
+  wob         Float?   @map("WOB(klb)")
+  ropin       Float?   @map("ROPi(m/hr)")
+  bvdepth     Float?   @map("BVDepth(m)")
+  torque      Float?   @map("Torque(klb.ft)")
+  rpm         Float?   @map("RPM")
+  hkldp       Float?   @map("HKLDP(klb)")
+  logdepth    Float?   @map("LogDepth(m)")
+  h2s_1       Float?   @map("H2S1_(ppm)")
+  mudflowoutp Float?   @map("MudFlowOutp")
+  totspm      Float?   @map("TotSPM")
+  sppress     Float?   @map("SPPress(psi)")
+  mudflowin   Float?   @map("MudFlowIn(gpm)")
+  co2_1       Float?   @map("CO2_1(%)")
+  gas         Float?   @map("Gas(%)")
+  mudtempin   Float?   @map("MudTempIn(C)")
+  mudtempout  Float?   @map("MudTempOut(C)")
+  tankvoltot  Float?   @map("TankVolTot(bbl)")
+
+  wellId      String   @db.VarChar(50)
+  well        Well     @relation(fields: [wellId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@map("records")
+}
