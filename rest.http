@@ -3,6 +3,6 @@ POST http://localhost:3000/api/company
 Content-Type: application/json
 
 {
-    "name": "pt satu",
+    "name": "pt dua",
     "address": "kalimalang bekasi"
 }

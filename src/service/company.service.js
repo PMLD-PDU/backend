@@ -13,11 +13,16 @@ export const register = async (req, res) => {
       .json({ message: "nama perusahaan telah dipakai ganti dengan yg unik" });
   }
 
-  return prismaClient.company.create({
+  const result = await prismaClient.company.create({
     data: { name, address },
     select: {
       id: true,
       name: true,
     },
+  });
+
+  return res.status(201).json({
+    message: "perusahaan berhasil di daftarkan",
+    data: result,
   });
 };
