@@ -1,8 +1,8 @@
 import express from "express";
-import { register } from "../service/company.service.js";
+import { registerCompanyController } from "../controller/company.controller.js";
 
 const privateRouter = new express.Router();
 
-privateRouter.post("/api/company", register);
+privateRouter.post("/api/company", registerCompanyController);
 
 export { privateRouter };
