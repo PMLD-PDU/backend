@@ -7,7 +7,7 @@ export const errorMiddleware = (error, req, res, next) => {
 
   if (error instanceof ResponseError) {
     res
-      .status(error.statusCode)
+      .status(error.status)
       .json({
         message: error.message,
       })

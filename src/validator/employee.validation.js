@@ -3,7 +3,9 @@ import Joi from "joi";
 const registerEmployeeValidation = Joi.object({
   name: Joi.string().max(100).required(),
   email: Joi.string().max(100).required(),
-  password: Joi.string().min(6).required(),
+  password: Joi.string()
+    .pattern(new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})"))
+    .required(),
 });
 
 const addEmployeeValidation = Joi.object({
@@ -21,8 +23,23 @@ const loginEmployeeValidation = Joi.object({
   password: Joi.string().required(),
 });
 
+const updateEmployeeValidation = Joi.object({
+  id: Joi.string().max(50).required(),
+  name: Joi.string().max(100),
+  email: Joi.string().max(100),
+  password: Joi.string().pattern(
+    new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})")
+  ),
+});
+
+const deleteEmployeeValidation = Joi.object({
+  id: Joi.string().max(50).required(),
+});
+
 export {
   registerEmployeeValidation,
   addEmployeeValidation,
   loginEmployeeValidation,
+  updateEmployeeValidation,
+  deleteEmployeeValidation,
 };
