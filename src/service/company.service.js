@@ -36,8 +36,6 @@ export const registerCompanyService = async (request) => {
   });
 };
 
-export const addNewCompanyService = async (request) => {};
-
 export const getCompanyByIdService = async (id) => {};
 
 export const getAllCompaniesService = async () => {};

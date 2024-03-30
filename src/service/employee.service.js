@@ -1,15 +1,15 @@
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 import {
   loginEmployeeValidation,
   registerEmployeeValidation,
 } from "../validator/employee.validation.js";
-import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
 import { validate } from "../validator/validation.js";
 import { prismaClient } from "../app/database.js";
 import { ResponseError } from "../error/response.error.js";
 
-export const registerEmployeeService = async (employee) => {
-  const data = validate(registerEmployeeValidation, employee);
+export const registerEmployeeService = async (request) => {
+  const data = validate(registerEmployeeValidation, request);
   const { name, email, password } = data;
 
   // Check if the employee already exists
@@ -42,8 +42,43 @@ export const registerEmployeeService = async (employee) => {
     },
   });
 };
-export const addNewEmployeeService = async (employee) => {
-  const data = validate(addEmployeeValidation, employee);
+
+export const loginEmployeeService = async (request) => {
+  const data = validate(loginEmployeeValidation, request);
+  const { email, password } = data;
+
+  //check if credentials are correct
+  const employeeData = await prismaClient.employee.findUnique({
+    where: {
+      email,
+    },
+  });
+
+  if (!employeeData) {
+    throw new ResponseError(400, "Invalid credentials");
+  }
+
+  const validPassword = await bcrypt.compare(password, employeeData.password);
+
+  if (!validPassword) {
+    throw new ResponseError(400, "Invalid credentials");
+  }
+
+  //generate token
+  const token = jwt.sign(
+    { id: employeeData.id, role: employeeData.role },
+    process.env.ACCESS_TOKEN_SECRET,
+    {
+      expiresIn: "1h",
+    }
+  );
+
+  return {
+    token,
+  };
+};
+export const addNewEmployeeService = async (request) => {
+  const data = validate(addEmployeeValidation, request);
   const { name, email, password, companyId } = data;
 
   // Check if the company exists
@@ -87,40 +122,6 @@ export const addNewEmployeeService = async (employee) => {
       role: true,
     },
   });
-};
-export const loginEmployeeService = async (employee) => {
-  const data = validate(loginEmployeeValidation, employee);
-  const { email, password } = data;
-
-  //check if credentials are correct
-  const employeeData = await prismaClient.employee.findUnique({
-    where: {
-      email,
-    },
-  });
-
-  if (!employeeData) {
-    throw new ResponseError(400, "Invalid credentials");
-  }
-
-  const validPassword = await bcrypt.compare(password, employeeData.password);
-
-  if (!validPassword) {
-    throw new ResponseError(400, "Invalid credentials");
-  }
-
-  //generate token
-  const token = jwt.sign(
-    { id: employeeData.id, role: employeeData.role },
-    process.env.ACCESS_TOKEN_SECRET,
-    {
-      expiresIn: "1h",
-    }
-  );
-
-  return {
-    token,
-  };
 };
 export const getAllEmployeesService = async () => {};
 export const getEmployeeByIdService = async (id) => {};
