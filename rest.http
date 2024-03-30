@@ -1,8 +1,22 @@
-### register company
-POST http://localhost:3000/api/company
+@host = http://localhost
+@port = 3000
+@endpoint= {{host}}:{{port}}
+
+### register employee
+POST {{endpoint}}/api/employee/register
 Content-Type: application/json
 
 {
-    "name": "pt dua",
-    "address": "kalimalang bekasi"
+    "name": "aliif arief",
+    "email": "me@aliifam.com",
+    "password": "Al1ifam"
+}
+
+### login employee
+POST {{endpoint}}/api/employee/login
+Content-Type: application/json
+
+{
+    "email": "me@aliifam.com",
+    "password": "Al1ifam"
 }

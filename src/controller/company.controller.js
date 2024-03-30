@@ -8,12 +8,3 @@ export const registerCompanyController = async (req, res, next) => {
     next(error);
   }
 };
-
-export const addCompanyController = async (req, res, next) => {
-  try {
-    const result = await addCompanyService(req.body);
-    res.status(201).json(result);
-  } catch (error) {
-    next(error);
-  }
-};
