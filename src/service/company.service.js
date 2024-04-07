@@ -4,9 +4,10 @@ import { registerCompanyValidation } from "../validator/company.validation.js";
 import { validate } from "../validator/validation.js";
 
 export const registerCompanyService = async (request) => {
-  const company = validate(registerCompanyValidation, request);
+  const company = validate(registerCompanyValidation, request.body);
 
-  const { userId, name, address } = company;
+  const { name, address } = company;
+  const { id: userId } = request.user;
 
   const countCompany = await prismaClient.company.count({
     where: {
@@ -23,7 +24,7 @@ export const registerCompanyService = async (request) => {
     data: {
       name,
       address,
-      user: {
+      Employee: {
         connect: {
           id: userId,
         },
@@ -36,10 +37,27 @@ export const registerCompanyService = async (request) => {
   });
 };
 
-export const getCompanyByIdService = async (id) => {};
+export const getCompanyByIdService = async (request) => {
+  const { id } = request.params;
 
-export const getAllCompaniesService = async () => {};
+  // Get the company by id
+  return prismaClient.company.findUnique({
+    where: {
+      id: parseInt(id),
+    },
+  });
+};
+
+export const getAllCompaniesService = async (request) => {
+  const { id } = request.user;
+  // Get all companies associated with the user
+  return prismaClient.company.findMany({
+    where: {
+      userId: id,
+    },
+  });
+};
 
 export const updateCompanyService = async (request) => {};
 
-export const deleteCompanyService = async (id) => {};
+export const deleteCompanyService = async (request) => {};

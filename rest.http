@@ -18,5 +18,20 @@ Content-Type: application/json
 
 {
     "email": "me@aliifam.com",
-    "passwori": "Al1ifam"
+    "password": "Al1ifam"
+}
+
+### get current employee profile
+GET {{endpoint}}/api/employee/profile
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsdWRpeTBvNjAwMDAxMXBsMzFqdGt6b3MiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTI0OTgyODcsImV4cCI6MTcxMjUwMTg4N30.exd9_TAlRgouqfU6ka7GFl1PPBpB4zL0mgh5Xv8-J0U
+
+### create new company
+POST {{endpoint}}/api/company
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsdWRpeTBvNjAwMDAxMXBsMzFqdGt6b3MiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTI0OTgyODcsImV4cCI6MTcxMjUwMTg4N30.exd9_TAlRgouqfU6ka7GFl1PPBpB4zL0mgh5Xv8-J0U
+
+{
+    "name": "PT. Aliifam",
+    "address": "Jl. Aliifam No. 1"
 }

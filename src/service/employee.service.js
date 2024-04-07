@@ -123,7 +123,21 @@ export const addNewEmployeeService = async (request) => {
     },
   });
 };
+export const getCurrentEmployeeService = async (request) => {
+  const { id } = request.user;
+  return prismaClient.employee.findUnique({
+    where: {
+      id,
+    },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+    },
+  });
+};
 export const getAllEmployeesService = async () => {};
-export const getEmployeeByIdService = async (id) => {};
-export const updateEmployeeService = async (employee) => {};
-export const deleteEmployeeService = async (id) => {};
+export const getEmployeeByIdService = async () => {};
+export const updateEmployeeService = async () => {};
+export const deleteEmployeeService = async () => {};
