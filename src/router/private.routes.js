@@ -23,6 +23,7 @@ privateRouter.get("/api/employee");
 
 //company routes
 privateRouter.post("/api/company", authMiddleWare, registerCompanyController);
+privateRouter.get("/api/company/");
 
 //place routes
 

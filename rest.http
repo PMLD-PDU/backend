@@ -24,12 +24,12 @@ Content-Type: application/json
 ### get current employee profile
 GET {{endpoint}}/api/employee/profile
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsdWRpeTBvNjAwMDAxMXBsMzFqdGt6b3MiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTI0OTgyODcsImV4cCI6MTcxMjUwMTg4N30.exd9_TAlRgouqfU6ka7GFl1PPBpB4zL0mgh5Xv8-J0U
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsdXBuNm4ycDAwMDBzZWM0Y2U2NG9kMDciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTI1MDE2NDAsImV4cCI6MTcxMjUwNTI0MH0.yBvNzbvOVKfiQJbj-sTIrV_fLwodQ1ZcVssdPYVrM6M
 
 ### create new company
 POST {{endpoint}}/api/company
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsdWRpeTBvNjAwMDAxMXBsMzFqdGt6b3MiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTI0OTgyODcsImV4cCI6MTcxMjUwMTg4N30.exd9_TAlRgouqfU6ka7GFl1PPBpB4zL0mgh5Xv8-J0U
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsdXBuNm4ycDAwMDBzZWM0Y2U2NG9kMDciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTI1MDE2NDAsImV4cCI6MTcxMjUwNTI0MH0.yBvNzbvOVKfiQJbj-sTIrV_fLwodQ1ZcVssdPYVrM6M
 
 {
     "name": "PT. Aliifam",
