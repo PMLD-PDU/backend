@@ -5,6 +5,7 @@ import {
   registerCompanyController,
 } from "../controller/company.controller.js";
 import {
+  addEmployeeController,
   getCurrentEmployeeController,
   loginEmployeeController,
   registerEmployeeController,
@@ -29,6 +30,12 @@ privateRouter.get("/api/employee");
 privateRouter.post("/api/company", authMiddleWare, registerCompanyController);
 privateRouter.get("/api/company", authMiddleWare, getCompaniesController);
 privateRouter.get("/api/company/:id", authMiddleWare, getCompanyByIdController);
+privateRouter.get("/api/company/:id/employee");
+privateRouter.post(
+  "/api/company/:id/employee",
+  authMiddleWare,
+  addEmployeeController
+);
 
 //place routes
 

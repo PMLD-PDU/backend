@@ -25,6 +25,9 @@ export const getCompaniesController = async (req, res, next) => {
 export const getCompanyByIdController = async (req, res, next) => {
   try {
     const result = await getCompanyByIdService(req);
+    if (!result) {
+      return res.status(404).json({ message: "Company not found" });
+    }
     res.status(200).json({ message: "Company", data: result });
   } catch (error) {
     next(error);

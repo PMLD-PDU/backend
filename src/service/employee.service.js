@@ -77,7 +77,7 @@ export const loginEmployeeService = async (request) => {
     token,
   };
 };
-export const addNewEmployeeService = async (request) => {
+export const addEmployeeService = async (request) => {
   const data = validate(addEmployeeValidation, request);
   const { name, email, password, companyId } = data;
 
