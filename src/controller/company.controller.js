@@ -1,5 +1,6 @@
 import {
   getAllCompaniesService,
+  getCompanyByIdService,
   registerCompanyService,
 } from "../service/company.service.js";
 
@@ -16,6 +17,15 @@ export const getCompaniesController = async (req, res, next) => {
   try {
     const result = await getAllCompaniesService(req);
     res.status(200).json({ message: "all Companies", data: result });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getCompanyByIdController = async (req, res, next) => {
+  try {
+    const result = await getCompanyByIdService(req);
+    res.status(200).json({ message: "Company", data: result });
   } catch (error) {
     next(error);
   }

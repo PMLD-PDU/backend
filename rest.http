@@ -41,3 +41,8 @@ Authorization: Bearer {{token}}
 GET {{endpoint}}/api/company
 Content-Type: application/json
 Authorization: Bearer {{token}}
+
+### get company by id
+GET {{endpoint}}/api/company/clupnbgba00002macxbx0zl44
+Content-Type: application/json
+Authorization: Bearer {{token}}

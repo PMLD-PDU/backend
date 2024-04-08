@@ -1,6 +1,7 @@
 import express from "express";
 import {
   getCompaniesController,
+  getCompanyByIdController,
   registerCompanyController,
 } from "../controller/company.controller.js";
 import {
@@ -27,6 +28,7 @@ privateRouter.get("/api/employee");
 //company routes
 privateRouter.post("/api/company", authMiddleWare, registerCompanyController);
 privateRouter.get("/api/company", authMiddleWare, getCompaniesController);
+privateRouter.get("/api/company/:id", authMiddleWare, getCompanyByIdController);
 
 //place routes
 

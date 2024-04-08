@@ -43,7 +43,7 @@ export const getCompanyByIdService = async (request) => {
   // Get the company by id
   return prismaClient.company.findUnique({
     where: {
-      id: parseInt(id),
+      id: id,
     },
   });
 };
