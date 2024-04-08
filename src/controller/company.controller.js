@@ -15,7 +15,7 @@ export const registerCompanyController = async (req, res, next) => {
 export const getCompaniesController = async (req, res, next) => {
   try {
     const result = await getAllCompaniesService(req);
-    res.status(200).json({ message: "Companies", data: result });
+    res.status(200).json({ message: "all Companies", data: result });
   } catch (error) {
     next(error);
   }

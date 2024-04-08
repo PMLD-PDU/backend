@@ -53,7 +53,11 @@ export const getAllCompaniesService = async (request) => {
   // Get all companies associated with the user
   return prismaClient.company.findMany({
     where: {
-      userId: id,
+      Employee: {
+        some: {
+          id,
+        },
+      },
     },
   });
 };

@@ -1,6 +1,7 @@
 @host = http://localhost
 @port = 3000
 @endpoint= {{host}}:{{port}}
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsdXBuNm4ycDAwMDBzZWM0Y2U2NG9kMDciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTI1NDc4NTMsImV4cCI6MTcxMjU1MTQ1M30.-_aHkxIYQh_2qtXNiZ7NI2ZhqhteDWnL9Ocf5dsaZbM
 
 ### register employee
 POST {{endpoint}}/api/employee/register
@@ -24,14 +25,19 @@ Content-Type: application/json
 ### get current employee profile
 GET {{endpoint}}/api/employee/profile
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsdXBuNm4ycDAwMDBzZWM0Y2U2NG9kMDciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTI1MDE2NDAsImV4cCI6MTcxMjUwNTI0MH0.yBvNzbvOVKfiQJbj-sTIrV_fLwodQ1ZcVssdPYVrM6M
+Authorization: Bearer {{token}}
 
 ### create new company
 POST {{endpoint}}/api/company
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsdXBuNm4ycDAwMDBzZWM0Y2U2NG9kMDciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTI1MDE2NDAsImV4cCI6MTcxMjUwNTI0MH0.yBvNzbvOVKfiQJbj-sTIrV_fLwodQ1ZcVssdPYVrM6M
+Authorization: Bearer {{token}}
 
 {
     "name": "PT. Aliifam",
     "address": "Jl. Aliifam No. 1"
 }
+
+### get all companies
+GET {{endpoint}}/api/company
+Content-Type: application/json
+Authorization: Bearer {{token}}
