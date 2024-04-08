@@ -16,6 +16,7 @@ export const registerEmployeeController = async (req, res, next) => {
 
 export const addEmployeeController = async (req, res, next) => {
   try {
+    req.body.companyId = req.params.id;
     const result = await addEmployeeService(req.body);
     res.status(201).json({ message: "new employee added", data: result });
   } catch (error) {

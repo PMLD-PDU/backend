@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import {
+  addEmployeeValidation,
   loginEmployeeValidation,
   registerEmployeeValidation,
 } from "../validator/employee.validation.js";
@@ -112,7 +113,7 @@ export const addEmployeeService = async (request) => {
       name,
       email,
       password: hashedPassword,
-      role: "EMPLOYEE",
+      role: "USER",
       companyId,
     },
     select: {

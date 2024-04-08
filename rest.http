@@ -1,7 +1,7 @@
 @host = http://localhost
 @port = 3000
 @endpoint= {{host}}:{{port}}
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsdXBuNm4ycDAwMDBzZWM0Y2U2NG9kMDciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTI1NDc4NTMsImV4cCI6MTcxMjU1MTQ1M30.-_aHkxIYQh_2qtXNiZ7NI2ZhqhteDWnL9Ocf5dsaZbM
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsdXBuNm4ycDAwMDBzZWM0Y2U2NG9kMDciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTI1ODMwNzIsImV4cCI6MTcxMjU4NjY3Mn0.NrNHO9KRawAsznYQRZdVJdgoEIs7h0bbxtO7bOt7zMY
 
 ### register employee
 POST {{endpoint}}/api/employee/register
@@ -46,3 +46,15 @@ Authorization: Bearer {{token}}
 GET {{endpoint}}/api/company/clupnbgba00002macxbx0zl44
 Content-Type: application/json
 Authorization: Bearer {{token}}
+
+### add employee to company
+POST {{endpoint}}/api/company/clupnbgba00002macxbx0zl44/employee
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "karyawan 1",
+    "email": "k1@aliifam.com",
+    "password": "k1nanJay;",
+    "confirmPassword": "k1nanJay;"
+}
