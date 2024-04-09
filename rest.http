@@ -1,7 +1,8 @@
 @host = http://localhost
 @port = 3000
 @endpoint= {{host}}:{{port}}
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsdXBuNm4ycDAwMDBzZWM0Y2U2NG9kMDciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTI1ODMwNzIsImV4cCI6MTcxMjU4NjY3Mn0.NrNHO9KRawAsznYQRZdVJdgoEIs7h0bbxtO7bOt7zMY
+@company = clupnbgba00002macxbx0zl44
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsdXBuNm4ycDAwMDBzZWM0Y2U2NG9kMDciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTI2NDcyMTgsImV4cCI6MTcxMjY1MDgxOH0.2suf7MnBzVoe5ZCRYF7NXlZvKyRsqFtXOJyK7vJk4fw
 
 ### register employee
 POST {{endpoint}}/api/employee/register
@@ -43,12 +44,12 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 ### get company by id
-GET {{endpoint}}/api/company/clupnbgba00002macxbx0zl44
+GET {{endpoint}}/api/company/{{company}}
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 ### add employee to company
-POST {{endpoint}}/api/company/clupnbgba00002macxbx0zl44/employee
+POST {{endpoint}}/api/company/{{company}}/employee
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
@@ -57,4 +58,15 @@ Authorization: Bearer {{token}}
     "email": "k1@aliifam.com",
     "password": "k1nanJay;",
     "confirmPassword": "k1nanJay;"
+}
+
+### add place to company
+POST {{endpoint}}/api/company/{{company}}/place
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Drilling Site 1",
+    "address": "Jl. Gunung Emas No. 1",
+    "companyId": "clupnbgba00002macxbx0zl44"
 }

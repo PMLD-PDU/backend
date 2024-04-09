@@ -11,6 +11,7 @@ import {
   registerEmployeeController,
 } from "../controller/employee.controller.js";
 import { authMiddleWare } from "../middleware/auth.middleware.js";
+import { createPlaceController } from "../controller/place.controller.js";
 
 const privateRouter = new express.Router();
 
@@ -38,6 +39,11 @@ privateRouter.post(
 );
 
 //place routes
+privateRouter.post(
+  "/api/company/:id/place",
+  authMiddleWare,
+  createPlaceController
+);
 
 //well routes
 
