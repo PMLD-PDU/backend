@@ -1,6 +1,6 @@
 export const sensorHeader = (req, res, next) => {
-  const sensorHeader = req.headers["X-Sensor-Header"];
-  const token = sensorHeader && sensorHeader.split(" ")[1];
+  const sensorHeader = req.headers["X-Well-Secret-Token"];
+  const token = sensorHeader;
 
   if (!token) {
     return res.status(401).json({ message: "Unauthorized" });

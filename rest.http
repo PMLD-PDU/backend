@@ -2,6 +2,7 @@
 @port = 3000
 @endpoint= {{host}}:{{port}}
 @company = clupnbgba00002macxbx0zl44
+@place = clus25taf0001qd1squj4suvb
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsdXBuNm4ycDAwMDBzZWM0Y2U2NG9kMDciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTI2NDcyMTgsImV4cCI6MTcxMjY1MDgxOH0.2suf7MnBzVoe5ZCRYF7NXlZvKyRsqFtXOJyK7vJk4fw
 
 ### register employee
@@ -60,7 +61,7 @@ Authorization: Bearer {{token}}
     "confirmPassword": "k1nanJay;"
 }
 
-### add place to company
+### create place for company
 POST {{endpoint}}/api/company/{{company}}/place
 Content-Type: application/json
 Authorization: Bearer {{token}}
@@ -69,4 +70,23 @@ Authorization: Bearer {{token}}
     "name": "Drilling Site 1",
     "address": "Jl. Gunung Emas No. 1",
     "companyId": "clupnbgba00002macxbx0zl44"
+}
+
+### create well for place
+POST {{endpoint}}/api/company/{{company}}/place/{{place}}/well
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "aaaa"
+}
+
+### create record for well
+POST {{endpoint}}/api/well
+Content-Type: application/json
+X-Well-Secret-Token: amammamam
+
+{
+    "datetime": "2021-02-01T00:00:00Z",
+    "value": 100,
 }
