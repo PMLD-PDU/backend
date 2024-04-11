@@ -25,6 +25,8 @@
     "express": "^4.19.2",
     "joi": "^17.12.2",
     "jsonwebtoken": "^9.0.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
     "winston": "^3.13.0"
   },
   "devDependencies": {

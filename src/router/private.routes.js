@@ -20,10 +20,7 @@ import {
 
 const privateRouter = new express.Router();
 
-//employee routes
-privateRouter.post("/api/employee/register", registerEmployeeController);
-privateRouter.post("/api/employee/login", loginEmployeeController);
-//private employee  routes
+//employee  routes
 privateRouter.get(
   "/api/employee/profile",
   authMiddleWare,

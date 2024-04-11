@@ -21,7 +21,7 @@ Content-Type: application/json
 
 {
     "email": "me@aliifam.com",
-    "passwordi": "Al1ifam"
+    "password": "Al1ifam"
 }
 
 ### get current employee profile

@@ -6,6 +6,8 @@ import { logger } from "./app/logging.js";
 import { privateRouter } from "./router/private.routes.js";
 import { publicRouter } from "./router/public.routes.js";
 import { errorMiddleware } from "./middleware/error.middleware.js";
+import { docs } from "./docs/openapi.js";
+import swaggerUi from "swagger-ui-express";
 
 dotenv.config();
 
@@ -17,6 +19,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(privateRouter);
 app.use(publicRouter);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(docs));
 app.use(errorMiddleware);
 
 app.listen(port, () => {
