@@ -8,7 +8,7 @@ export const createWellController = async (req, res, next) => {
     if (!result) {
       res.status(400).json({ message: "Well not created" });
     }
-    res.status(201).json({ message: "Place created", data: result });
+    res.status(201).json({ message: "Well created", data: result });
   } catch (error) {
     next(error);
   }

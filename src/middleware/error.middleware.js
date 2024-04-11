@@ -5,19 +5,27 @@ export const errorMiddleware = (error, req, res, next) => {
     return next();
   }
 
+  // handle custom response error
   if (error instanceof ResponseError) {
-    res
+    return res
       .status(error.status)
       .json({
         message: error.message,
       })
       .end();
-  } else {
-    res
-      .status(500)
+  }
+  if (error instanceof SyntaxError && error.status == 400 && "body" in error) {
+    return res
+      .status(400)
       .json({
-        message: error.message || "Internal Server Error",
+        message: "Invalid JSON payload passed.",
       })
       .end();
   }
+  return res
+    .status(500)
+    .json({
+      message: error.message || "Internal Server Error",
+    })
+    .end();
 };

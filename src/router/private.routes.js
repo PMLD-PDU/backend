@@ -12,6 +12,8 @@ import {
 } from "../controller/employee.controller.js";
 import { authMiddleWare } from "../middleware/auth.middleware.js";
 import { createPlaceController } from "../controller/place.controller.js";
+import { sensorMiddleware } from "../middleware/sensor.middleware.js";
+import { createWellController } from "../controller/well.controller.js";
 
 const privateRouter = new express.Router();
 
@@ -46,5 +48,11 @@ privateRouter.post(
 );
 
 //well routes
+privateRouter.post(
+  "/api/company/:company/place/:place/well",
+  authMiddleWare,
+  createWellController
+);
+privateRouter.post("/api/well", sensorMiddleware);
 
 export { privateRouter };

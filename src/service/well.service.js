@@ -1,7 +1,6 @@
 import { prismaClient } from "../app/database.js";
 
 export const createWellService = async (request) => {
-  if (!company || !place) return null;
   // check company and place
   const company = await prismaClient.company.findUnique({
     where: {
@@ -14,6 +13,8 @@ export const createWellService = async (request) => {
       id: request.placeId,
     },
   });
+
+  if (!company || !place) return null;
 
   return prismaClient.well.create({
     data: {

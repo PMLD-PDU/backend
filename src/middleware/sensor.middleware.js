@@ -1,4 +1,4 @@
-export const sensorHeader = (req, res, next) => {
+export const sensorMiddleware = (req, res, next) => {
   const sensorHeader = req.headers["X-Well-Secret-Token"];
   const token = sensorHeader;
 

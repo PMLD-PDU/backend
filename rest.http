@@ -3,7 +3,7 @@
 @endpoint= {{host}}:{{port}}
 @company = clupnbgba00002macxbx0zl44
 @place = clus25taf0001qd1squj4suvb
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsdXBuNm4ycDAwMDBzZWM0Y2U2NG9kMDciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTI2NDcyMTgsImV4cCI6MTcxMjY1MDgxOH0.2suf7MnBzVoe5ZCRYF7NXlZvKyRsqFtXOJyK7vJk4fw
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsdXBuNm4ycDAwMDBzZWM0Y2U2NG9kMDciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTI4MDI2NjQsImV4cCI6MTcxMjgwNjI2NH0.vqizHlYCSWMX5gTU3B3t221c1IdA48BsrAdiM0vbiUo
 
 ### register employee
 POST {{endpoint}}/api/employee/register
@@ -21,7 +21,7 @@ Content-Type: application/json
 
 {
     "email": "me@aliifam.com",
-    "password": "Al1ifam"
+    "passwordi": "Al1ifam"
 }
 
 ### get current employee profile
@@ -68,8 +68,7 @@ Authorization: Bearer {{token}}
 
 {
     "name": "Drilling Site 1",
-    "address": "Jl. Gunung Emas No. 1",
-    "companyId": "clupnbgba00002macxbx0zl44"
+    "address": "Jl. Gunung Emas No. 1"
 }
 
 ### create well for place
@@ -78,7 +77,8 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "aaaa"
+    "name": "Well 2",
+    "address": "alamat sumur 2"
 }
 
 ### create record for well
