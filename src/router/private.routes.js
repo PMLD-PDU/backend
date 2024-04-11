@@ -13,7 +13,10 @@ import {
 import { authMiddleWare } from "../middleware/auth.middleware.js";
 import { createPlaceController } from "../controller/place.controller.js";
 import { sensorMiddleware } from "../middleware/sensor.middleware.js";
-import { createWellController } from "../controller/well.controller.js";
+import {
+  addRecordController,
+  createWellController,
+} from "../controller/well.controller.js";
 
 const privateRouter = new express.Router();
 
@@ -53,6 +56,6 @@ privateRouter.post(
   authMiddleWare,
   createWellController
 );
-privateRouter.post("/api/well", sensorMiddleware);
+privateRouter.post("/api/well", sensorMiddleware, addRecordController);
 
 export { privateRouter };

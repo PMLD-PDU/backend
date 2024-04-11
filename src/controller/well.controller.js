@@ -1,4 +1,7 @@
-import { createWellService } from "../service/well.service.js";
+import {
+  addRecordService,
+  createWellService,
+} from "../service/well.service.js";
 
 export const createWellController = async (req, res, next) => {
   try {
@@ -14,4 +17,15 @@ export const createWellController = async (req, res, next) => {
   }
 };
 
-export const addRecordController = async (req, res, next) => {};
+export const addRecordController = async (req, res, next) => {
+  try {
+    req.body.wellId = req.sensor;
+    const result = await addRecordService(req.body);
+    if (!result) {
+      res.status(400).json({ message: "Record not created" });
+    }
+    res.status(201).json({ message: "Record created", data: result });
+  } catch (error) {
+    next(error);
+  }
+};

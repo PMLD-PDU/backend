@@ -84,9 +84,30 @@ Authorization: Bearer {{token}}
 ### create record for well
 POST {{endpoint}}/api/well
 Content-Type: application/json
-X-Well-Secret-Token: amammamam
+X-Well-Secret-Token: cluumt39j000312u8bg7bcnid
 
 {
-    "datetime": "2021-02-01T00:00:00Z",
-    "value": 100,
+    "date": null,
+    "bitdepth": 1,
+    "scfm": 2,
+    "mudcondin": 3,
+    "mudcondout": 4,
+    "blockpos": 5,
+    "wob": 6,
+    "ropin": 7,
+    "bvdepth": 8,
+    "torque": 9,
+    "rpm": 10,
+    "hkldp": 11,
+    "logdepth": 12,
+    "h2s_1": 13,
+    "mudflowoutp": 14,
+    "totspm": 15,
+    "sppress": 16,
+    "mudflowin": 17,
+    "co2_1": 18,
+    "gas": 19,
+    "mudtempin": 20,
+    "mudtempout": 21,
+    "tankvoltot": 22
 }
