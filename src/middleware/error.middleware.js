@@ -18,7 +18,7 @@ export const errorMiddleware = (error, req, res, next) => {
     return res
       .status(400)
       .json({
-        message: "Invalid JSON payload passed.",
+        message: "Bad Request",
       })
       .end();
   }

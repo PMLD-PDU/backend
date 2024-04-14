@@ -12,7 +12,8 @@ Content-Type: application/json
 {
     "name": "aliif arief",
     "email": "me@aliifam.com",
-    "password": "Al1ifam"
+    "password": "Al1ifam",
+    "confirmPassword": "Al1ifam"
 }
 
 ### login employee

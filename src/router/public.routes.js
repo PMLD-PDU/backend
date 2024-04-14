@@ -6,8 +6,6 @@ import {
 
 const publicRouter = new express.Router();
 
-// openapi 3 public router
-
 //employee public router
 /**
  * @openapi
@@ -15,7 +13,7 @@ const publicRouter = new express.Router();
  *   post:
  *     tags:
  *       - Employee
- *     summary: Register new employee auto assign role as admin
+ *     summary: Register new employee auto assign role as ADMIN
  *     requestBody:
  *       required: true
  *       content:
@@ -30,29 +28,93 @@ const publicRouter = new express.Router();
  *             properties:
  *               name:
  *                 type: string
- *                 maxLength: 100
  *                 default: john doe
  *               email:
  *                 type: string
- *                 maxLength: 100
  *                 default: jd@pdu.com
  *               password:
  *                 type: string
- *                 pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})"
+ *                 default: Password123;
  *               confirmPassword:
  *                 type: string
- *                 ref: password
- *     example:
- *       name: John Doe
- *       email: jd@mail.com
- *       password: Password123
- *       confirmPassword: Password123
+ *                 default: Password123;
+ *     responses:
+ *       '201':
+ *         description: Employee registered successfully
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Employee registered
+ *               data:
+ *                 id: cu6s2qz4
+ *                 name: John Doe
+ *                 email: jd@mail.com
+ *                 role: ADMIN
+ *       '400':
+ *         description: Bad request
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Bad request
+ *       '500':
+ *         description: Internal Server error
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Internal Server Error
  */
 publicRouter.post("/api/employee/register", registerEmployeeController);
+
 /**
- * @swagger
+ * @openapi
  * /api/employee/login:
- *
+ *   post:
+ *     tags:
+ *       - Employee
+ *     summary: Login employee
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 default: jd@pdu.com
+ *               password:
+ *                 type: string
+ *                 default: Password123;
+ *     responses:
+ *       '200':
+ *         description: Login success returing access token for 1 hour
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: login success
+ *               data:
+ *                 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjdTZzMnF6NCIsImlhdCI6MTYyNzY1MzQ0MiwiZXhwIjoxNjI3NjU3MDQyfQ.9Qv1oW4zQmYpVdZ3H3oKQk3FQ6XsLZJr6v7YQzY2s5I
+ *       '400':
+ *         description: Bad request
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Bad request
+ *       '401':
+ *         description: Invalid credentials
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Invalid credentials
+ *       '500':
+ *         description: Internal Server error
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Internal Server Error
  */
 publicRouter.post("/api/employee/login", loginEmployeeController);
 

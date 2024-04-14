@@ -56,13 +56,13 @@ export const loginEmployeeService = async (request) => {
   });
 
   if (!employeeData) {
-    throw new ResponseError(400, "Invalid credentials");
+    throw new ResponseError(401, "Invalid credentials");
   }
 
   const validPassword = await bcrypt.compare(password, employeeData.password);
 
   if (!validPassword) {
-    throw new ResponseError(400, "Invalid credentials");
+    throw new ResponseError(401, "Invalid credentials");
   }
 
   //generate token
