@@ -21,7 +21,7 @@ export const registerEmployeeService = async (request) => {
   });
 
   if (countEmployee > 0) {
-    throw new ResponseError(400, "Employee already exists");
+    throw new ResponseError(409, "Employee already exists");
   }
 
   const salt = await bcrypt.genSalt();

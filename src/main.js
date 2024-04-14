@@ -21,6 +21,7 @@ app.use(privateRouter);
 app.use(publicRouter);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(docs));
 app.use(errorMiddleware);
+app.disable("x-powered-by");
 
 app.listen(port, () => {
   logger.info(`App starting in port: ${port}`);

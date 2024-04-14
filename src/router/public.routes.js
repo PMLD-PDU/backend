@@ -14,6 +14,8 @@ const publicRouter = new express.Router();
  *     tags:
  *       - Employee
  *     summary: Register new employee auto assign role as ADMIN
+ *     security:
+ *       - JWTAuth: []
  *     requestBody:
  *       required: true
  *       content:
