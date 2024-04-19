@@ -78,9 +78,19 @@ export const loginEmployeeService = async (request) => {
     token,
   };
 };
+
 export const addEmployeeService = async (request) => {
   const data = validate(addEmployeeValidation, request);
   const { name, email, password, companyId } = data;
+
+  if (!companyId) {
+    return {
+      statusCode: 400,
+      body: {
+        message: "companyId is required"
+      }
+    };
+  }
 
   // Check if the company exists
   const company = await prismaClient.company.findUnique({
@@ -124,6 +134,7 @@ export const addEmployeeService = async (request) => {
     },
   });
 };
+
 export const getCurrentEmployeeService = async (request) => {
   const { id } = request.user;
   return prismaClient.employee.findUnique({
@@ -138,7 +149,44 @@ export const getCurrentEmployeeService = async (request) => {
     },
   });
 };
-export const getAllEmployeesService = async () => {};
-export const getEmployeeByIdService = async () => {};
+
+export const getAllEmployeesService = async (request) => {
+  const { companyId } = request.params;
+
+  // Get all employee by the company id
+  return prismaClient.employee.findMany({
+    where: {
+      companyId: companyId,
+    },
+  });
+};
+
+export const getEmployeeByIdService = async (request) => {
+  const { id } = request.params;
+
+  // Get the employee by id
+  const employee = await prismaClient.employee.findUnique({
+    where: {
+      id: id,
+    },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      company: true,
+      role: true,
+    },
+  });
+
+  const data = {
+    id: employee.id,
+    name: employee.name,
+    email: employee.email,
+    company: employee.company.name,
+    role: employee.role,
+  };
+
+  return data;
+};
 export const updateEmployeeService = async () => {};
 export const deleteEmployeeService = async () => {};
