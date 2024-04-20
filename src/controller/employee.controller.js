@@ -3,6 +3,8 @@ import {
   getCurrentEmployeeService,
   loginEmployeeService,
   registerEmployeeService,
+  getAllEmployeesService,
+  getEmployeeByIdService
 } from "../service/employee.service.js";
 
 export const registerEmployeeController = async (req, res, next) => {
@@ -37,6 +39,24 @@ export const getCurrentEmployeeController = async (req, res, next) => {
   try {
     const result = await getCurrentEmployeeService(req);
     res.status(200).json({ message: "Current employee", data: result });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getAllEmployeeController = async (req, res, next) => {
+  try {
+    const result = await getAllEmployeesService(req);
+    res.status(200).json({ message: "all employee", data: result });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getEmployeeByIdController = async (req, res, next) => {
+  try {
+    const result = await getEmployeeByIdService(req);
+    res.status(200).json({ message: "employee by id", data: result });
   } catch (error) {
     next(error);
   }
