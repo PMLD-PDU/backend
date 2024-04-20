@@ -27,3 +27,14 @@ export const createPlaceService = async (request) => {
     },
   });
 };
+
+export const getAllPlacesService = async (request) => {
+  const { id } = request.params;
+
+  // Get all place by the company id
+  return prismaClient.place.findMany({
+    where: {
+      companyId: id,
+    },
+  });
+};
