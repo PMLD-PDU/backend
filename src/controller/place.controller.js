@@ -1,4 +1,7 @@
-import { createPlaceService } from "../service/place.service.js";
+import { 
+  createPlaceService,
+  getAllPlacesService
+} from "../service/place.service.js";
 
 export const createPlaceController = async (req, res, next) => {
   try {
@@ -12,7 +15,16 @@ export const createPlaceController = async (req, res, next) => {
     next(error);
   }
 };
-export const getPlacesController = async (req, res, next) => {};
+
+export const getPlacesController = async (req, res, next) => {
+  try {
+    const result = await getAllPlacesService(req);
+    res.status(200).json({ message: "All place", data: result });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const getPlaceByIdController = async (req, res, next) => {};
 export const updatePlaceController = async (req, res, next) => {};
 export const deletePlaceController = async (req, res, next) => {};
