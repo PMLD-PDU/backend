@@ -70,7 +70,7 @@ export const addRecordService = async (request) => {
 
 export const getRecordService = async (request) => {
   //cek apakah wellId ada di database
-  console.log(request.wellId);
+  // console.log(request.wellId);
   const well = await prismaClient.well.findUnique({
     where: {
       id: request.wellId,

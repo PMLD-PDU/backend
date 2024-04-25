@@ -54,8 +54,8 @@ export const getRecordController = async (req, res, next) => {
       59
     );
 
-    const start_time = req.query.start_time || startOfDay;
-    const end_time = req.query.end_time || endOfDay;
+    const start_time = req.query.from || startOfDay;
+    const end_time = req.query.to || endOfDay;
 
     const request = {
       wellId,
@@ -63,6 +63,9 @@ export const getRecordController = async (req, res, next) => {
       end_time,
     };
     const result = await getRecordService(request);
+    if (!result) {
+      res.status(404).json({ message: "Record not found" });
+    }
     res.status(200).json({ message: "Record found", data: result });
   } catch (error) {
     next(error);

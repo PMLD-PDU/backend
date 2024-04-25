@@ -114,7 +114,11 @@ X-Well-Secret-Token: cluumt39j000312u8bg7bcnid
 }
 
 ### get record from well
-
 GET {{endpoint}}/api/well/cluumt39j000312u8bg7bcnid
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### get record from well with specific datetime range from 25 april 2024 to 26 april 2024
+GET {{endpoint}}/api/well/cluumt39j000312u8bg7bcnid?from=2021-04-25T00:00:00.000Z&to=2021-04-26T00:00:00.000Z
 Content-Type: application/json
 Authorization: Bearer {{token}}
