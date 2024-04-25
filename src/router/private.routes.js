@@ -13,14 +13,15 @@ import {
   registerEmployeeController,
 } from "../controller/employee.controller.js";
 import { authMiddleWare } from "../middleware/auth.middleware.js";
-import { 
+import {
   createPlaceController,
-  getPlacesController
- } from "../controller/place.controller.js";
+  getPlacesController,
+} from "../controller/place.controller.js";
 import { sensorMiddleware } from "../middleware/sensor.middleware.js";
 import {
   addRecordController,
   createWellController,
+  getRecordController,
 } from "../controller/well.controller.js";
 // import { profile } from "winston";
 
@@ -37,7 +38,7 @@ const privateRouter = new express.Router();
  *     summary: Get current employee profile
  *     security:
  *       - JWTAuth: []
- * 
+ *
  *     responses:
  *       '200':
  *         description: Success get current employee
@@ -73,7 +74,7 @@ privateRouter.get(
   "/api/employee/profile",
   authMiddleWare,
   getCurrentEmployeeController
-);  
+);
 
 //get employee by id
 /**
@@ -92,7 +93,7 @@ privateRouter.get(
  *         schema:
  *           type: string
  *         description: ID of the employee
- * 
+ *
  *     responses:
  *       '200':
  *         description: Success get employee by id
@@ -125,7 +126,11 @@ privateRouter.get(
  *             example:
  *               message: Internal Server Error
  */
-privateRouter.get("/api/employee/:id", authMiddleWare, getEmployeeByIdController);
+privateRouter.get(
+  "/api/employee/:id",
+  authMiddleWare,
+  getEmployeeByIdController
+);
 
 //get all employee
 /**
@@ -144,7 +149,7 @@ privateRouter.get("/api/employee/:id", authMiddleWare, getEmployeeByIdController
  *         schema:
  *           type: string
  *         description: ID of the company
- * 
+ *
  *     responses:
  *       '200':
  *         description: Success get all employee
@@ -159,7 +164,7 @@ privateRouter.get("/api/employee/:id", authMiddleWare, getEmployeeByIdController
  *                   role: ADMIN
  *                   password: $2b$10$h1qCj8G9iajPok7TjE6X3.SBGPrvGhlfp35ce2iVELXYhcPoh6GF.
  *                   companyId: clv4y7ncx0000l2u43cb5f7ex
- * 
+ *
  *                 - id: clv414sso0000gl4oyu2qizxo
  *                   name: David Lee
  *                   email: david@pdu.com
@@ -214,7 +219,7 @@ privateRouter.get("/api/employee", authMiddleWare, getAllEmployeeController);
  *               address:
  *                 type: string
  *                 default: Jl. PDU No. 1
- * 
+ *
  *     responses:
  *       '201':
  *         description: Success created new company
@@ -256,7 +261,7 @@ privateRouter.post("/api/company", authMiddleWare, registerCompanyController);
  *     summary: Get all companies
  *     security:
  *       - JWTAuth: []
- * 
+ *
  *     responses:
  *       '200':
  *         description: Success get all companies
@@ -309,7 +314,7 @@ privateRouter.get("/api/company", authMiddleWare, getCompaniesController);
  *        schema:
  *          type: string
  *        description: ID of the company
- * 
+ *
  *     responses:
  *       '200':
  *         description: Success get company by id
@@ -383,7 +388,7 @@ privateRouter.get("/api/company/:id", authMiddleWare, getCompanyByIdController);
  *               confirmPassword:
  *                 type: string
  *                 default: Password123;
- * 
+ *
  *     responses:
  *       '201':
  *         description: Success added new employee
@@ -455,7 +460,7 @@ privateRouter.post(
  *               address:
  *                 type: string
  *                 default: Jl. Gunung Emas No. 1
- * 
+ *
  *     responses:
  *       '201':
  *         description: Success creating new place
@@ -511,7 +516,7 @@ privateRouter.post(
  *         schema:
  *           type: string
  *         description: ID of the company
- * 
+ *
  *     responses:
  *       '200':
  *         description: Success get all place
@@ -526,7 +531,7 @@ privateRouter.post(
  *                   latitude: null
  *                   longitude: null
  *                   companyId: clv4y7ncx0000l2u43cb5f7ex
- * 
+ *
  *                 - id: clv5dp8l10001rae2whae92ta
  *                   name: Drilling Site 2
  *                   address: Jl. Gunung Emas No. 10
@@ -552,7 +557,11 @@ privateRouter.post(
  *             example:
  *               message: Internal Server Error
  */
-privateRouter.get("/api/company/:id/place", authMiddleWare, getPlacesController);
+privateRouter.get(
+  "/api/company/:id/place",
+  authMiddleWare,
+  getPlacesController
+);
 
 //well routes
 //create well for place
@@ -594,7 +603,7 @@ privateRouter.get("/api/company/:id/place", authMiddleWare, getPlacesController)
  *               address:
  *                 type: string
  *                 default: Jl. Sumur 1
- * 
+ *
  *     responses:
  *       '201':
  *         description: Success creating new well
@@ -605,7 +614,7 @@ privateRouter.get("/api/company/:id/place", authMiddleWare, getPlacesController)
  *               data:
  *                 id: clv52blhz000177unu724rwvc
  *                 name: Drilling Site 1
- *                 
+ *
  *       '400':
  *         description: Bad request
  *         content:
@@ -739,7 +748,7 @@ privateRouter.post(
  *               tankvoltot:
  *                 type: float
  *                 default: 22
- * 
+ *
  *     responses:
  *       '201':
  *         description: Success creating new record
@@ -777,5 +786,6 @@ privateRouter.post(
  *               message: Internal Server Error
  */
 privateRouter.post("/api/well", sensorMiddleware, addRecordController);
+privateRouter.get("/api/well/:well", authMiddleWare, getRecordController);
 
 export { privateRouter };

@@ -67,3 +67,51 @@ export const addRecordService = async (request) => {
     },
   });
 };
+
+export const getRecordService = async (request) => {
+  //cek apakah wellId ada di database
+  console.log(request.wellId);
+  const well = await prismaClient.well.findUnique({
+    where: {
+      id: request.wellId,
+    },
+  });
+  if (!well) return null;
+  // ambil data record berdasarkan wellId, start_time, dan end_time
+  return prismaClient.record.findMany({
+    where: {
+      wellId: request.well,
+      date: {
+        gte: request.start_time,
+        lte: request.end_time,
+      },
+    },
+    select: {
+      id: true,
+      date: true,
+      bitdepth: true,
+      scfm: true,
+      mudcondin: true,
+      mudcondout: true,
+      blockpos: true,
+      wob: true,
+      ropin: true,
+      bvdepth: true,
+      torque: true,
+      rpm: true,
+      hkldp: true,
+      logdepth: true,
+      h2s_1: true,
+      mudflowoutp: true,
+      totspm: true,
+      sppress: true,
+      mudflowin: true,
+      co2_1: true,
+      gas: true,
+      mudtempin: true,
+      mudtempout: true,
+      tankvoltot: true,
+      well: true,
+    },
+  });
+};

@@ -18,7 +18,7 @@ npm run dev
 
 ## open api spec
 
-open api spec https://github.com/PMLD-PDU/openapi
+open api spec http://;ocalhost:3000/api-docs
 
 ## sedikit penjelasan
 

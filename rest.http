@@ -3,7 +3,7 @@
 @endpoint= {{host}}:{{port}}
 @company = clupnbgba00002macxbx0zl44
 @place = clus25taf0001qd1squj4suvb
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsdXBuNm4ycDAwMDBzZWM0Y2U2NG9kMDciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTI4MDI2NjQsImV4cCI6MTcxMjgwNjI2NH0.vqizHlYCSWMX5gTU3B3t221c1IdA48BsrAdiM0vbiUo
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsdXBuNm4ycDAwMDBzZWM0Y2U2NG9kMDciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTQwMTI5MjksImV4cCI6MTcxNDAxNjUyOX0.b3qNLB8ZBHIXjPbCn-2EfOGMgOH45Gi2fs8DYmxw74o
 
 ### register employee
 POST {{endpoint}}/api/employee/register
@@ -112,3 +112,9 @@ X-Well-Secret-Token: cluumt39j000312u8bg7bcnid
     "mudtempout": 21,
     "tankvoltot": 22
 }
+
+### get record from well
+
+GET {{endpoint}}/api/well/cluumt39j000312u8bg7bcnid
+Content-Type: application/json
+Authorization: Bearer {{token}}

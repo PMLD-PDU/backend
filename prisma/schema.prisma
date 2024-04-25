@@ -58,6 +58,7 @@ model Well {
   place     Place   @relation(fields: [placeId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   Record Record[]
+  Notification Notification[]
 
   @@map("wells")
 }
@@ -93,6 +94,18 @@ model Record {
   well   Well   @relation(fields: [wellId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@map("records")
+}
+
+model Notification {
+  id        String   @id @default(cuid()) @db.VarChar(50)
+  title     String   @db.VarChar(255)
+  message   String?  @db.Text
+  seen      Boolean  @default(false)
+  wellId    String   @db.VarChar(50)
+  well      Well     @relation(fields: [wellId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  createdAt DateTime @default(now()) @map("Created-At")
+
+  @@map("notifications")
 }
 
 enum Role {
