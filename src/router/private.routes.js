@@ -786,6 +786,129 @@ privateRouter.post(
  *               message: Internal Server Error
  */
 privateRouter.post("/api/well", sensorMiddleware, addRecordController);
+
+/**
+ * @openapi
+ * /api/well/{wellId}:
+ *   get:
+ *     tags:
+ *       - Well
+ *     summary: Get record for a well
+ *     security:
+ *       - JWTAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: wellId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the well
+ * 
+ *       - in: query
+ *         name: from
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: startOfDay
+ * 
+ *       - in: query
+ *         name: to
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: endOfDay
+ * 
+ *     responses:
+ *       '200':
+ *         description: Success get well record
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Record found
+ *               data:
+ *                 - id: clv571uge000111l96ya36bij
+ *                   date: 2024-04-18T12:04:32.637Z
+ *                   bitdepth: 1
+ *                   scfm: 2
+ *                   mudcondin: 3
+ *                   mudcondout: 4
+ *                   blockpos: 5
+ *                   wob: 6
+ *                   ropin: 7
+ *                   bvdepth: 8
+ *                   torque: 9
+ *                   rpm: 10
+ *                   hkldp: 11
+ *                   logdepth: 12
+ *                   h2s_1: 13
+ *                   mudflowoutp: 14
+ *                   totspm: 15
+ *                   sppress: 16
+ *                   mudflowin: 17
+ *                   co2_1: 18
+ *                   gas: 19
+ *                   mudtempin: 20
+ *                   mudtempout: 21
+ *                   tankvoltot: 22
+ *                   well:
+ *                     id: clv52rg7200017w7dn3wvxxw1
+ *                     name: Well 1
+ *                     address: Jl. Sumur 1
+ *                     latitude: null
+ *                     longtitude: null
+ *                     placeId: clv52blhz000177unu724rwvc
+ * 
+ *                 - id: clv57470h000311l94yhr5uk8
+ *                   date: 2024-04-18T12:06:22.325Z
+ *                   bitdepth: 1
+ *                   scfm: 2
+ *                   mudcondin: 3
+ *                   mudcondout: 4
+ *                   blockpos: 5
+ *                   wob: 6
+ *                   ropin: 7
+ *                   bvdepth: 8
+ *                   torque: 9
+ *                   rpm: 10
+ *                   hkldp: 11
+ *                   logdepth: 12
+ *                   h2s_1: 13
+ *                   mudflowoutp: 14
+ *                   totspm: 15
+ *                   sppress: 16
+ *                   mudflowin: 17
+ *                   co2_1: 18
+ *                   gas: 19
+ *                   mudtempin: 20
+ *                   mudtempout: 21
+ *                   tankvoltot: 22
+ *                   well:
+ *                     id: clv52rg7200017w7dn3wvxxw1
+ *                     name: Well 1
+ *                     address: Jl. Sumur 1
+ *                     latitude: null
+ *                     longtitude: null
+ *                     placeId: clv52blhz000177unu724rwvc
+ *                 
+ *       '400':
+ *         description: Bad request
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Bad request
+ *       '401':
+ *         description: Invalid credentials
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Invalid credentials
+ *       '500':
+ *         description: Internal Server error
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Internal Server Error
+ */
 privateRouter.get("/api/well/:well", authMiddleWare, getRecordController);
 
 export { privateRouter };
