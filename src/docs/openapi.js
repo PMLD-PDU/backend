@@ -15,7 +15,7 @@ const options = {
         description: "Development server",
       },
       {
-        url: "https://pdu-api.web.app",
+        url: "https://bepdu.aliifam.com",
         description: "Production server",
       },
     ],
