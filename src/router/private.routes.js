@@ -22,6 +22,7 @@ import {
   addRecordController,
   createWellController,
   getRecordController,
+  getWellController,
 } from "../controller/well.controller.js";
 // import { profile } from "winston";
 
@@ -502,11 +503,11 @@ privateRouter.post(
 
 /**
  * @openapi
- * /api/company/{companyId}/place:
+ * /api/company/{companyId}/place/{placeId}/well:
  *   get:
  *     tags:
- *       - Place
- *     summary: Get all place
+ *       - Well
+ *     summary: Get all well
  *     security:
  *       - JWTAuth: []
  *     parameters:
@@ -515,29 +516,35 @@ privateRouter.post(
  *         required: true
  *         schema:
  *           type: string
- *         description: ID of the company
+ *         description: ID of the place
+ *       - in: path
+ *         name: placeId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the place
  *
  *     responses:
  *       '200':
- *         description: Success get all place
+ *         description: Success get all well
  *         content:
  *           application/json:
  *             example:
- *               message: All place
+ *               message: All well
  *               data:
  *                 - id: clv52blhz000177unu724rwvc
  *                   name: Drilling Site 1
  *                   address: Jl. Gunung Emas No. 1
  *                   latitude: null
  *                   longitude: null
- *                   companyId: clv4y7ncx0000l2u43cb5f7ex
+ *                   placeId: clv4y7ncx0000l2u43cb5f7ex
  *
  *                 - id: clv5dp8l10001rae2whae92ta
  *                   name: Drilling Site 2
  *                   address: Jl. Gunung Emas No. 10
  *                   latitude: null
  *                   longitude: null
- *                   companyId: clv4y7ncx0000l2u43cb5f7ex
+ *                   placeId: clv4y7ncx0000l2u43cb5f7ex
  *       '400':
  *         description: Bad request
  *         content:
@@ -558,9 +565,9 @@ privateRouter.post(
  *               message: Internal Server Error
  */
 privateRouter.get(
-  "/api/company/:id/place",
+  "/api/company/:company/place/:place/well",
   authMiddleWare,
-  getPlacesController
+  getWellController
 );
 
 //well routes
@@ -638,6 +645,69 @@ privateRouter.post(
   "/api/company/:company/place/:place/well",
   authMiddleWare,
   createWellController
+);
+
+/**
+ * @openapi
+ * /api/company/{companyId}/place:
+ *   get:
+ *     tags:
+ *       - Place
+ *     summary: Get all place
+ *     security:
+ *       - JWTAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: companyId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the company
+ *
+ *     responses:
+ *       '200':
+ *         description: Success get all place
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: All place
+ *               data:
+ *                 - id: clv52blhz000177unu724rwvc
+ *                   name: Drilling Site 1
+ *                   address: Jl. Gunung Emas No. 1
+ *                   latitude: null
+ *                   longitude: null
+ *                   companyId: clv4y7ncx0000l2u43cb5f7ex
+ *
+ *                 - id: clv5dp8l10001rae2whae92ta
+ *                   name: Drilling Site 2
+ *                   address: Jl. Gunung Emas No. 10
+ *                   latitude: null
+ *                   longitude: null
+ *                   companyId: clv4y7ncx0000l2u43cb5f7ex
+ *       '400':
+ *         description: Bad request
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Bad request
+ *       '401':
+ *         description: Invalid credentials
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Invalid credentials
+ *       '500':
+ *         description: Internal Server error
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Internal Server Error
+ */
+privateRouter.get(
+  "/api/company/:id/place",
+  authMiddleWare,
+  getPlacesController
 );
 
 //create well record
@@ -910,5 +980,4 @@ privateRouter.post("/api/well", sensorMiddleware, addRecordController);
  *               message: Internal Server Error
  */
 privateRouter.get("/api/well/:well", authMiddleWare, getRecordController);
-
 export { privateRouter };

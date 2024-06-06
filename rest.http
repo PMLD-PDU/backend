@@ -82,6 +82,16 @@ Authorization: Bearer {{token}}
     "address": "alamat sumur 2"
 }
 
+### get all well
+GET {{endpoint}}/api/company/{{company}}/place/{{place}}/well
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "companyId": "clveoh5qz000039rsi47akr4g",
+    "placeId": "clveoi1db000239rs6ge0w9c9"
+}
+
 ### create record for well
 POST {{endpoint}}/api/well
 Content-Type: application/json

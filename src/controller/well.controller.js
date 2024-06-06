@@ -2,6 +2,7 @@ import {
   addRecordService,
   createWellService,
   getRecordService,
+  getAllWellService,
 } from "../service/well.service.js";
 
 export const createWellController = async (req, res, next) => {
@@ -67,6 +68,15 @@ export const getRecordController = async (req, res, next) => {
       res.status(404).json({ message: "Record not found" });
     }
     res.status(200).json({ message: "Record found", data: result });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getWellController = async (req, res, next) => {
+  try {
+    const result = await getAllWellService(req);
+    res.status(200).json({ message: "Success get all well", data: result });
   } catch (error) {
     next(error);
   }
