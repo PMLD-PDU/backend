@@ -33,14 +33,16 @@ export const createWellService = async (request) => {
 };
 
 export const getAllWellService = async (request) => {
-  const { companyId, placeId } = await request.params;
-  // const {  } = request.params;
+  const { companyId} = request.params;
+  const { placeId  } = request.params;
 
   console.log(companyId, placeId)
   return await prismaClient.well.findMany({
     where: {
-      companyId: companyId,
-      placeId: placeId,
+      place: {
+        id: placeId,
+        companyId: companyId,
+      },
     },
   });
 }

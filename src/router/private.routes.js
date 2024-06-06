@@ -516,7 +516,7 @@ privateRouter.post(
  *         required: true
  *         schema:
  *           type: string
- *         description: ID of the place
+ *         description: ID of the company
  *       - in: path
  *         name: placeId
  *         required: true
@@ -532,19 +532,19 @@ privateRouter.post(
  *             example:
  *               message: All well
  *               data:
- *                 - id: clv52blhz000177unu724rwvc
- *                   name: Drilling Site 1
- *                   address: Jl. Gunung Emas No. 1
+ *                 - id: clv52rg7200017w7dn3wvxxw1
+ *                   name: Well 1
+ *                   address: Jl. Sumur 1
  *                   latitude: null
  *                   longitude: null
- *                   placeId: clv4y7ncx0000l2u43cb5f7ex
+ *                   placeId: clv52blhz000177unu724rwvc
  *
- *                 - id: clv5dp8l10001rae2whae92ta
- *                   name: Drilling Site 2
- *                   address: Jl. Gunung Emas No. 10
+ *                 - id: clx30dtwc0001nuw5w5xyfk1k
+ *                   name: Well 2
+ *                   address: Jl. Sumur 2
  *                   latitude: null
  *                   longitude: null
- *                   placeId: clv4y7ncx0000l2u43cb5f7ex
+ *                   placeId: clv52blhz000177unu724rwvc
  *       '400':
  *         description: Bad request
  *         content:
@@ -565,7 +565,7 @@ privateRouter.post(
  *               message: Internal Server Error
  */
 privateRouter.get(
-  "/api/company/:company/place/:place/well",
+  "/api/company/:companyId/place/:placeId/well",
   authMiddleWare,
   getWellController
 );
