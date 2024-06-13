@@ -33,10 +33,10 @@ export const createWellService = async (request) => {
 };
 
 export const getAllWellService = async (request) => {
-  const { companyId} = request.params;
-  const { placeId  } = request.params;
+  const { companyId } = request.params;
+  const { placeId } = request.params;
 
-  console.log(companyId, placeId)
+  console.log(companyId, placeId);
   return await prismaClient.well.findMany({
     where: {
       place: {
@@ -45,8 +45,7 @@ export const getAllWellService = async (request) => {
       },
     },
   });
-}
-
+};
 
 export const addRecordService = async (request) => {
   return prismaClient.record.create({
@@ -93,13 +92,27 @@ export const getRecordService = async (request) => {
     },
   });
   if (!well) return null;
+
+  const now = new Date();
+
+  let start_time = request.start_time;
+  let end_time = request.end_time;
+
+  if (!end_time) {
+    end_time = now;
+  }
+
+  if (!start_time) {
+    startTime = new Date(now.getTime() - 24 * 60 * 60 * 1000); // 24 jam yang lalu
+  }
+
   // ambil data record berdasarkan wellId, start_time, dan end_time
   return prismaClient.record.findMany({
     where: {
       wellId: request.well,
       date: {
-        gte: request.start_time,
-        lte: request.end_time,
+        gte: start_time,
+        lte: end_time,
       },
     },
     select: {
