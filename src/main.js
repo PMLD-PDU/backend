@@ -19,6 +19,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(privateRouter);
 app.use(publicRouter);
+
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(docs));
 app.use(errorMiddleware);
 app.disable("x-powered-by");
