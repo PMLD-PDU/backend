@@ -1,12 +1,8 @@
-import{
-    addNotificationService,
-    getNotificationService
-}from "../service/notification.service.js";
+// controllers/notificationController.js
 
+import { sendNotificationService } from '../services/notificationService.js';
 
-const { sendNotificationService } = require('../services/notificationService');
-
-const sendNotificationController = async (req, res) => {
+export const sendNotificationController = async (req, res) => {
     const { wellId, title, message } = req.body;
 
     if (!wellId || !title) {
@@ -17,11 +13,8 @@ const sendNotificationController = async (req, res) => {
         const notification = await sendNotificationService({ wellId, title, message });
         res.status(201).json(notification);
     } catch (error) {
-        console.error(error);
+        console.error('Error sending notification:', error.message);
         res.status(500).json({ error: 'Failed to send notification' });
     }
 };
 
-module.exports = {
-    sendNotificationController,
-};
