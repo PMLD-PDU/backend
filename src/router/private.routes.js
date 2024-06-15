@@ -873,21 +873,21 @@ privateRouter.post("/api/well", sensorMiddleware, addRecordController);
  *         schema:
  *           type: string
  *         description: ID of the well
- * 
+ *
  *       - in: query
  *         name: from
- *         required: true
+ *         required: false
  *         schema:
  *           type: string
  *         description: startOfDay
- * 
+ *
  *       - in: query
  *         name: to
- *         required: true
+ *         required: false
  *         schema:
  *           type: string
  *         description: endOfDay
- * 
+ *
  *     responses:
  *       '200':
  *         description: Success get well record
@@ -927,7 +927,7 @@ privateRouter.post("/api/well", sensorMiddleware, addRecordController);
  *                     latitude: null
  *                     longtitude: null
  *                     placeId: clv52blhz000177unu724rwvc
- * 
+ *
  *                 - id: clv57470h000311l94yhr5uk8
  *                   date: 2024-04-18T12:06:22.325Z
  *                   bitdepth: 1
@@ -959,7 +959,7 @@ privateRouter.post("/api/well", sensorMiddleware, addRecordController);
  *                     latitude: null
  *                     longtitude: null
  *                     placeId: clv52blhz000177unu724rwvc
- *                 
+ *
  *       '400':
  *         description: Bad request
  *         content:

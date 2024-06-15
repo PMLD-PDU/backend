@@ -1,6 +1,7 @@
 @host = http://localhost
 @port = 3000
 @endpoint= {{host}}:{{port}}
+# @endpoint= http://27.112.79.127
 @company = clupnbgba00002macxbx0zl44
 @place = clus25taf0001qd1squj4suvb
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsdXBuNm4ycDAwMDBzZWM0Y2U2NG9kMDciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTQwMTI5MjksImV4cCI6MTcxNDAxNjUyOX0.b3qNLB8ZBHIXjPbCn-2EfOGMgOH45Gi2fs8DYmxw74o
