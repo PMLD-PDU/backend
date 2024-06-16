@@ -24,6 +24,11 @@ import {
   getRecordController,
   getWellController,
 } from "../controller/well.controller.js";
+import {
+  getNotificationController,
+  markAllNotificationsAsSeenController,
+  markNotificationAsSeenController,
+} from "../controller/notification.controller.js";
 // import { profile } from "winston";
 
 const privateRouter = new express.Router();
@@ -717,7 +722,9 @@ privateRouter.get(
  *   post:
  *     tags:
  *       - Well
- *     summary: Create record for well
+ *     summary: Create record for well for bot sensor
+ *     security:
+ *       - sensorKeyAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -980,4 +987,20 @@ privateRouter.post("/api/well", sensorMiddleware, addRecordController);
  *               message: Internal Server Error
  */
 privateRouter.get("/api/well/:well", authMiddleWare, getRecordController);
+
+privateRouter.get(
+  "/api/well/:well/notification",
+  authMiddleWare,
+  getNotificationController
+);
+privateRouter.patch(
+  "/api/well/:well/notification/seen",
+  authMiddleWare,
+  markAllNotificationsAsSeenController
+);
+privateRouter.patch(
+  "/api/well/:well/notification/:id/seen",
+  authMiddleWare,
+  markNotificationAsSeenController
+);
 export { privateRouter };

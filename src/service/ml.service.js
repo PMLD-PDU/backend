@@ -1,4 +1,5 @@
 import { prismaClient } from "../app/database.js";
+import { ResponseError } from "../error/response.error.js";
 
 export const getAllWellIdService = async (request) => {
   //get all well id from database
@@ -11,12 +12,14 @@ export const getAllWellIdService = async (request) => {
 
 export const getRecordService = async (request) => {
   //cek apakah wellId ada di database
-  // console.log(request.wellId);
+  console.log(request.wellId);
+  console.log("masuk sini");
   const well = await prismaClient.well.findUnique({
     where: {
       id: request.wellId,
     },
   });
+
   if (!well) return null;
 
   const now = new Date();
@@ -35,7 +38,7 @@ export const getRecordService = async (request) => {
   // ambil data record berdasarkan wellId, start_time, dan end_time, window_size
   return prismaClient.record.findMany({
     where: {
-      wellId: request.well,
+      wellId: request.wellId,
       date: {
         gte: start_time,
         lte: end_time,
@@ -68,6 +71,32 @@ export const getRecordService = async (request) => {
       mudtempout: true,
       tankvoltot: true,
       well: true,
+    },
+  });
+};
+
+export const postNotificationService = async (request) => {
+  const { wellId, title, message } = request;
+
+  //cek apakah wellId dan title ada
+  if (!wellId || !title) {
+    throw new ResponseError(400, "WellId and title are required");
+  }
+  const well = await prismaClient.well.findUnique({
+    where: {
+      id: wellId,
+    },
+  });
+  if (!well) {
+    throw new ResponseError(404, "Well not found");
+  }
+
+  //buat notifikasi baru
+  return prismaClient.notification.create({
+    data: {
+      title,
+      message,
+      wellId,
     },
   });
 };

@@ -1,6 +1,7 @@
 import {
   getAllWellIdService,
   getRecordService,
+  postNotificationService,
 } from "../service/ml.service.js";
 
 export const getAllWellId = async (req, res, next) => {
@@ -17,7 +18,7 @@ export const getAllWellId = async (req, res, next) => {
 
 export const getRecordController = async (req, res, next) => {
   try {
-    const wellId = req.params.well;
+    const wellId = req.params.id;
 
     const currentDate = new Date();
 
@@ -53,6 +54,15 @@ export const getRecordController = async (req, res, next) => {
       res.status(404).json({ message: "Record not found" });
     }
     res.status(200).json({ message: "Record found", data: result });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const postNotificationController = async (req, res, next) => {
+  try {
+    const result = await postNotificationService(req.body);
+    res.status(201).json({ message: "Notification sent", data: result });
   } catch (error) {
     next(error);
   }

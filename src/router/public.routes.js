@@ -2,12 +2,7 @@ import express from "express";
 import {
   loginEmployeeController,
   registerEmployeeController,
-  
 } from "../controller/employee.controller.js";
-
-import{
-  sendNotificationController
-} from "../controller/notification.controller.js"
 
 const publicRouter = new express.Router();
 
@@ -124,6 +119,5 @@ publicRouter.post("/api/employee/register", registerEmployeeController);
  *               message: Internal Server Error
  */
 publicRouter.post("/api/employee/login", loginEmployeeController);
-publicRouter.post("/api/notifications", sendNotificationController);
 
 export { publicRouter };

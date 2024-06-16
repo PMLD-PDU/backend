@@ -1,5 +1,5 @@
 export const mlMiddleware = (req, res, next) => {
-  const mlHeader = req.headers["x-integration-token"];
+  const mlHeader = req.headers["x-ml-secret-token"];
   const token = mlHeader;
   // console.log(token);
   if (!token) {

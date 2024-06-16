@@ -39,6 +39,11 @@ const options = {
           in: "header",
           name: "x-well-secret-token",
         },
+        mlKeyAuth: {
+          type: "apiKey",
+          in: "header",
+          name: "x-ml-secret-token",
+        },
       },
     },
   },

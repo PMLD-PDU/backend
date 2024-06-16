@@ -134,7 +134,23 @@ GET {{endpoint}}/api/well/cluumt39j000312u8bg7bcnid?from=2021-04-25T00:00:00.000
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
-### get record from well with specific datetime range from 25 april 2024 to 26 april 2024 and limit 10
+### get all well id for ml
 GET {{endpoint}}/api/ml/well
 Content-Type: application/json
-X-Integration-Token: tokenpenghubungdenganmlyangamatamatrasiharusdijaga
+X-Ml-Secret-Token: tokenpenghubungdenganmlyangamatamatrasiharusdijaga
+
+### get record from well for ml
+GET {{endpoint}}/api/ml/well/cluumt39j000312u8bg7bcnid
+Content-Type: application/json
+X-Ml-Secret-Token: tokenpenghubungdenganmlyangamatamatrasiharusdijaga
+
+### ml post notification
+POST {{endpoint}}/api/ml/notification
+Content-Type: application/json
+X-Ml-Secret-Token: tokenpenghubungdenganmlyangamatamatrasiharusdijaga
+
+{
+    "wellId": "cluumt39j000312u8bg7bcnid",
+    "title": "title",
+    "message": "message"
+}
