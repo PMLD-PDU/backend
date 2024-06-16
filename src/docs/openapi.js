@@ -15,7 +15,7 @@ const options = {
         description: "Development server",
       },
       {
-        url: "https://bepdu.aliifam.com",
+        url: "http://27.112.79.127",
         description: "Production server",
       },
     ],
