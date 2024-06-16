@@ -26,6 +26,9 @@ const options = {
       {
         sensorKeyAuth: [],
       },
+      {
+        mlKeyAuth: [],
+      },
     ],
     components: {
       securitySchemes: {
