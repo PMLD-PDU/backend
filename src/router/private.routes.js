@@ -988,16 +988,161 @@ privateRouter.post("/api/well", sensorMiddleware, addRecordController);
  */
 privateRouter.get("/api/well/:well", authMiddleWare, getRecordController);
 
+/**
+ * @openapi
+ * /api/well/{wellId}/notification:
+ *   get:
+ *     tags:
+ *       - Notification
+ *     summary: Get notification
+ *     security:
+ *       - JWTAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: wellId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the well
+ *        
+ *     responses:
+ *       '200':
+ *         description: Success Sent Notification 
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Notification sent
+ *               data:
+ *                   id: clv52rg7200017w7dn3wvxxw1
+ *                   title: Lorem ipsum
+ *                   message: Lorem ipsum dolor sit amet
+ *                   wellId:  clxcv6dxf0004dnzwrke3wmpc
+ *                   Created-At: null
+ *                   seen: false
+ *
+ *       '400':
+ *         description: Bad request
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Bad request
+ *       '401':
+ *         description: Invalid credentials
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Invalid credentials
+ *       '500':
+ *         description: Internal Server error
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Internal Server Error
+ */
 privateRouter.get(
   "/api/well/:well/notification",
   authMiddleWare,
   getNotificationController
 );
+
+/**
+ * @openapi
+ * /api/well/{wellId}/notification/seen:
+ *   patch:
+ *     tags:
+ *       - Notification
+ *     summary: Mark all notifications as seen
+ *     security:
+ *       - JWTAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: wellId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the well
+ *
+ *     responses:
+ *       '200':
+ *         description: All notifications marked as seen
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: All notifications marked as seen
+ *               data:
+ *                   seen: true
+ *
+ *       '400':
+ *         description: Bad request
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Bad request
+ *       '401':
+ *         description: Invalid credentials
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Invalid credentials
+ *       '500':
+ *         description: Internal Server error
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Internal Server Error
+ */
 privateRouter.patch(
   "/api/well/:well/notification/seen",
   authMiddleWare,
   markAllNotificationsAsSeenController
 );
+
+/**
+ * @openapi
+ * /api/well/{wellId}/notification/{id}/seen:
+ *   patch:
+ *     tags:
+ *       - Notification
+ *     summary: Mark a notifications as seen
+ *     security:
+ *       - JWTAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the notification
+ *
+ *     responses:
+ *       '200':
+ *         description: Notification marked as seen
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Notification marked as seen
+ *               data:
+ *                   seen: true
+ *
+ *       '400':
+ *         description: Bad request
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Bad request
+ *       '401':
+ *         description: Invalid credentials
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Invalid credentials
+ *       '500':
+ *         description: Internal Server error
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Internal Server Error
+ */
 privateRouter.patch(
   "/api/well/:well/notification/:id/seen",
   authMiddleWare,
