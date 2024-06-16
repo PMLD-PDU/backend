@@ -4,7 +4,7 @@
 # @endpoint= http://27.112.79.127
 @company = clupnbgba00002macxbx0zl44
 @place = clus25taf0001qd1squj4suvb
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsdXBuNm4ycDAwMDBzZWM0Y2U2NG9kMDciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTQwMTI5MjksImV4cCI6MTcxNDAxNjUyOX0.b3qNLB8ZBHIXjPbCn-2EfOGMgOH45Gi2fs8DYmxw74o
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsdXBuNm4ycDAwMDBzZWM0Y2U2NG9kMDciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTg1MTk0MTYsImV4cCI6MTcxODUyMzAxNn0.2FHRuBz528lmq5-Mog14aYj32ftr61r3hDdqQBRoGhM
 
 ### register employee
 POST {{endpoint}}/api/employee/register
@@ -154,3 +154,18 @@ X-Ml-Secret-Token: tokenpenghubungdenganmlyangamatamatrasiharusdijaga
     "title": "title",
     "message": "message"
 }
+
+### frontend get notification
+GET {{endpoint}}/api/well/cluumt39j000312u8bg7bcnid/notification
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### frontend set notification read single
+PATCH {{endpoint}}/api/well/cluumt39j000312u8bg7bcnid/notification/clxh5gcyx00016r9kqfeyl6lf/seen
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### frontend set notification read all
+PATCH {{endpoint}}/api/well/cluumt39j000312u8bg7bcnid/notification/seen
+Content-Type: application/json
+Authorization: Bearer {{token}}
